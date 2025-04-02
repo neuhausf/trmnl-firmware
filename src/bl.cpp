@@ -1669,8 +1669,10 @@ static void goToSleep(void)
   preferences.putUInt(PREFERENCES_LAST_SLEEP_TIME, getTime());
   preferences.end();
   esp_sleep_enable_timer_wakeup((uint64_t)time_to_sleep * SLEEP_uS_TO_S_FACTOR);
+  #ifndef FIREBEETLE
   esp_deep_sleep_enable_gpio_wakeup(1 << PIN_INTERRUPT,
                                     ESP_GPIO_WAKEUP_GPIO_LOW);
+  #endif
   esp_deep_sleep_start();
 }
 

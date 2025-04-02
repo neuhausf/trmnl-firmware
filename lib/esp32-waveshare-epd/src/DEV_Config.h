@@ -44,6 +44,30 @@
 /**
  * GPIO config
 **/
+#if FIREBEETLE
+
+#define DISP_WIDTH  800
+#define DISP_HEIGHT 480
+#include <Adafruit_GFX.h>
+#include <GxEPD2_BW.h>
+extern GxEPD2_BW<GxEPD2_750_T7,
+                 GxEPD2_750_T7::HEIGHT> display;
+
+#define PIN_EPD_DC  22
+#define PIN_EPD_PWR  26
+#define EPD_SCK_PIN  18
+#define EPD_MOSI_PIN 23
+
+#define EPD_CS_PIN   13
+#define EPD_RST_PIN  21
+#define EPD_DC_PIN   22
+#define EPD_BUSY_PIN 14
+
+#define GPIO_PIN_SET   1
+#define GPIO_PIN_RESET 0
+
+#else
+
 #define EPD_SCK_PIN  7
 #define EPD_MOSI_PIN 8
 #define EPD_CS_PIN   6
@@ -53,6 +77,7 @@
 
 #define GPIO_PIN_SET   1
 #define GPIO_PIN_RESET 0
+#endif
 
 /**
  * GPIO read and write

@@ -19,6 +19,12 @@ enum MSG {
   MAC_NOT_REGISTERED,
   TEST,
 };
+typedef enum alignment
+{
+  LEFT,
+  RIGHT,
+  CENTER
+} alignment_t;
 
 /**
  * @brief Function to init the display
@@ -81,4 +87,8 @@ void display_show_msg(uint8_t * image_buffer, MSG message_type, String friendly_
  */
 void display_sleep(void);
 
+#if FIREBEETLE
+void drawString(int16_t x, int16_t y, const String &text, alignment_t alignment,
+  uint16_t color=0x0000);
+#endif
 #endif

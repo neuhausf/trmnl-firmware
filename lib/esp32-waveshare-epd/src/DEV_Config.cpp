@@ -33,7 +33,7 @@
 static SPIClass * display_spi = new SPIClass(FSPI);
 
 void GPIO_Config(void)
-{    
+{      
     display_spi->begin(EPD_SCK_PIN, -1, EPD_MOSI_PIN);
     display_spi->setFrequency(20000000);
     //display_spi->beginTransaction(SPISettings(20000000, 1, 0));
@@ -43,7 +43,7 @@ void GPIO_Config(void)
     pinMode(EPD_DC_PIN, OUTPUT);
 
     pinMode(EPD_CS_PIN, OUTPUT);
-
+    
     digitalWrite(EPD_CS_PIN, HIGH);
 }
 /******************************************************************************
@@ -54,7 +54,9 @@ Info:
 UBYTE DEV_Module_Init(void)
 {
     // gpio
+    #ifndef FIREBEETLE
     GPIO_Config();
+    #endif
 
     // serial printf
     Serial.begin(115200);
